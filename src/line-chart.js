@@ -108,13 +108,14 @@ var LineChart = {
 		var textTitle = title + " : " + value;
 		var text = group.append('text');
 		text.attr('y', p.y)
+			.attr('x', p.x)
 			.attr('fill', color)
-			.text(textTitle)
-			.text.attr('x', p.x);
+			.text(textTitle);
 	},
 	drawUserScoreTitle : function(svg, group, p, color, value, opt){
 		var textTitle = value + '';
 		var text = group.append('text');
+	
 		text.attr('fill', color)
 			.text(textTitle);
 		
