@@ -1,0 +1,22 @@
+{
+  "name": "line-chart",
+  "version": "1.0.0",
+  "description": "Line Chart", 
+  "keywords": [
+    "line",
+    "chart",
+    "d3"
+  ],
+  "author": "ocean",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eHanlin/line-chart.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "main": "src/line-chart.js"
+}
