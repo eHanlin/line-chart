@@ -259,7 +259,7 @@ var LineChart = {
 	}
 };
 
-if(!window.Radar){
+if(!window.LineChart){
 	window.LineChart = LineChart;
 }
 
