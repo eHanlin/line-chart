@@ -185,17 +185,17 @@ var LineChart = {
 			
 			//basic title
 			var BTP = {x: basicX + opt.bottomTitleGap, y: basicY + opt.tagRadius};
-			var bval = d[j].basicRate * 100;
+			var bval = Math.floor(d[j].basicRate * 100);
 			svg.call(self.drawTagTitle, groupList[j], BTP ,opt.bottomTagColor, d[j].bTitle, bval, opt);
 
 			//skill title
 			var TTP = {x: skilledX + opt.topTitleGap, y: skilledY + opt.tagRadius};
-			var tval = d[j].skilledRate * 100;
+			var tval = Math.floor(d[j].skilledRate * 100);
 			svg.call(self.drawTagTitle, groupList[j], TTP ,opt.topTagColor, d[j].tTitle, tval, opt);
 			
 			//學生分數 title
 			var STP = {x :  p.x + userScoreW , y : p.y };
-			var sval = d[j].rightRate * 100;
+			var sval = Math.floor(d[j].rightRate * 100);
 			svg.call(self.drawUserScoreTitle, groupList[j], STP ,opt.scoreColor, sval, opt);
 		}
 		//刻度
