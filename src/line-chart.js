@@ -39,7 +39,7 @@ var LineChart = {
 		bottomNeedleColor : '#29b6f6', 
 		bottomNeedOpacity : 0.8,
 		//標記標題
-		topTitleGap :25,
+		topTitleGap :15,
 		bottomTitleGap : 15,
 		//user score
 		scoreOffsetH : 5, //使用者分數位置左水平間隔用
@@ -104,24 +104,17 @@ var LineChart = {
 			 .attr('x2', p2.x)
 			 .attr('y2', p2.y);
 	},
-	drawTagTitle:function(svg, group, p, color, title, value, neddOffset, opt){
+	drawTagTitle:function(svg, group, p, color, title, value, opt){
 		var textTitle = title + " : " + value;
 		var text = group.append('text');
 		text.attr('y', p.y)
 			.attr('fill', color)
-			.text(textTitle);
-		if(neddOffset){	 
-			var fontSize = text.style("font-size").replace('pt','').replace('px','')  | 0;
-			var gapTotal =  opt.surmiseFontGap * (textTitle.length - 1);
-			var offsetW  = (fontSize * textTitle.length + gapTotal) /2;
-			p.x -= offsetW;
-		}
-		text.attr('x', p.x);
+			.text(textTitle)
+			.text.attr('x', p.x);
 	},
 	drawUserScoreTitle : function(svg, group, p, color, value, opt){
 		var textTitle = value + '';
 		var text = group.append('text');
-	
 		text.attr('fill', color)
 			.text(textTitle);
 		
@@ -192,12 +185,12 @@ var LineChart = {
 			//basic title
 			var BTP = {x: basicX + opt.bottomTitleGap, y: basicY + opt.tagRadius};
 			var bval = d[j].basicRate * 100;
-			svg.call(self.drawTagTitle, groupList[j], BTP ,opt.bottomTagColor, d[j].bTitle, bval, false, opt);
+			svg.call(self.drawTagTitle, groupList[j], BTP ,opt.bottomTagColor, d[j].bTitle, bval, opt);
 
 			//skill title
-			var TTP = {x: skilledX - opt.topTitleGap, y: skilledY + opt.tagRadius};
+			var TTP = {x: skilledX + opt.topTitleGap, y: skilledY + opt.tagRadius};
 			var tval = d[j].skilledRate * 100;
-			svg.call(self.drawTagTitle, groupList[j], TTP ,opt.topTagColor, d[j].tTitle, tval, true, opt);
+			svg.call(self.drawTagTitle, groupList[j], TTP ,opt.topTagColor, d[j].tTitle, tval, opt);
 			
 			//學生分數 title
 			var STP = {x :  p.x + userScoreW , y : p.y };
