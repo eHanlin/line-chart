@@ -228,14 +228,6 @@ var LineChart = {
 		var w = viewBoxList[2];
 		var h = viewBoxList[3];
 		var minLength =  w  * opt.axisZoom;
-		if(opt.isDebug){
-			console.log('w = ' + w);
-			console.log('h = ' + h);
-			console.log('p1_radians = ' + p1_radians);
-			console.log('p2_radians = ' + p2_radians);
-			console.log('minLength = ' + minLength);
-			console.log(svg.datum());
-		}
 		//render 
 		svg.call(self.drawAxis, minLength, p1_radians, p2_radians, opt, self);
 	},
