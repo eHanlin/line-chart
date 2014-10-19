@@ -82,7 +82,7 @@ var LineChart = {
 		return opt;
 	},
 	reset : function(id){
-		d3.select(id).select('svg').remove();
+		d3.select(id).selectAll('svg').remove();
 		
 	},
 	para : null,
