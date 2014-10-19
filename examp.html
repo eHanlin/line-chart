@@ -3,14 +3,20 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>radar chart</title>
+	<title>line chart</title>
 	<meta name="author" content="ocean">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="./src/line-chart.css"/>
 	<style>
+		body{
+			margin: 0px 0px;
+			padding : 0px 0px;
+		}
 		#box{
 			width: 100%;
-			height: 610px;
+			height: 20px;
+		}
+		.lineChart{
 		}
 	</style>
 </head>
@@ -24,12 +30,25 @@
 <script>
 var data = [
            	{title: "寫作能力",  tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.285232323232323, basicRate:0.5, skilledRate: 0.7}, 
-           	{title: "形音義",	   tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.8, basicRate:0.6, skilledRate: 0.9}, 
-           	{title: "詞句成語",  tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.7, basicRate:0.5, skilledRate: 0.8},
-           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 1, basicRate:0.5, skilledRate: 0.8}
+           	{title: "形音義",	   tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.02, basicRate:0.6, skilledRate: 1}, 
+           	{title: "詞句成語",  tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.01, basicRate:0.5, skilledRate: 0.823223232323},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 1, basicRate:0.53434343434, skilledRate: 0.8},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.0, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.01, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.02, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.03, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.04, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.05, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.06, basicRate:0.5, skilledRate: 0.5},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.07, basicRate:0.0, skilledRate: 1},
+           	{title: "詞句成語2", tTitle: "精熟平均", bTitle: "基礎平均", rightRate: 0.08, basicRate:0.0, skilledRate: 1}
+
            ];
-window.LineChart.draw("#lineBox", data);
-window.LineChart.draw("#lineBox", data);
+
+for(var i=0 , l=data.length ; i < l ; i++){
+	window.LineChart.draw("#lineBox", data[i]);
+	//window.LineChart.draw("#lineBox", data[i]);
+}
 
 </script>
 </html>
