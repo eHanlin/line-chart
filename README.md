@@ -1,8 +1,7 @@
-## 雷達圖 Radar Chart
+## Line Chart
 
 ## 說明
 1.依賴於 D3.js
-
 
 ### 安裝 Install
 1. sudo npm install d3
