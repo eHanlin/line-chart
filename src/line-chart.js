@@ -41,7 +41,7 @@ var LineChart = {
 		gradien : [
 			{ offset : '0%' , color : "#ffeb3b" , opacity : "1"},
 			{ offset : '50%' , color : "#fdd835" , opacity : "1"},
-			{ offset : '100%' , color : "#f5f5f5" , opacity : "1"},
+			{ offset : '100%' , color : "#fbc02d" , opacity : "1"},
 		],
 		//上標記
 		tMark : {
