@@ -133,6 +133,8 @@ var LineChart = {
 			else{
 				text += val;
 			}
+		}else{
+			text += val;
 		}
 		svg.call(self.randerMarkText,g, tx , ty, text , opt.tMark.fontSize , opt.tMark.color);
 		//標記
@@ -164,6 +166,8 @@ var LineChart = {
 			else{
 				text += val;
 			}
+		}else{
+			text += val;
 		}
 		svg.call(self.randerMarkText,g, tx , ty, text , opt.bMark.fontSize , opt.bMark.color);
 		//標記
