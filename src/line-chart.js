@@ -1,7 +1,7 @@
-(function(){	
+;(function(){	
 var LineChart = {
 	options : {
-		viewBox : '0,0,1100,120',
+		viewBox : '0,0,1100,135',
 		preserveAspectRatio : "none",
 		chart : {width:'100%', height:'100%'},
 		axisZoom : 1,								//縮放
@@ -14,11 +14,20 @@ var LineChart = {
 			count : 10,
 			Height : 15,							//刻度軸刻度垂直線高度
 			color : "grey",							//刻度顏色
-			textGap : 0
+			verticalColor : "grey",					//垂直線色
+			isShow : true,							//是否顯示刻度表
+			width: 1,
+			gap : 15,
+			opacity : 0.6,
+			title : "答對率",
+			fontSize : 16,
+			titleColor : '#000000',
+			titleGap : 5,							//刻度Title文字的gap
+			valueGap : 16							//每一刻度數值文字gap
 		},
 		bar :{
 			//繪製起點
-			top:0,
+			top:-20,
 			left:20 ,
 			height : 35,				//條的高度
 			rx : 15 ,					//圓角x
@@ -91,6 +100,51 @@ var LineChart = {
 	},
 	formatStr : function(val){
 		return (val * 100 | 0) / 100;
+	},
+	randerScale : function(svg, parameter, opt, self){
+		var mainY =  (parameter.chartHeight - opt.bar.height) / 2 + opt.bar.top + opt.bar.height + + opt.bMark.offsetY + opt.scale.gap + (opt.scale.Height/2);
+		var mainX2 = opt.bar.left + parameter.chartWidth;
+		//水平
+		var g = svg.append('g');
+			g.append('line')
+		     .attr('x1', opt.bar.left)
+			 .attr('y1', mainY)
+			 .attr('x2', mainX2)
+			 .attr('y2', mainY)
+			 .attr('stroke-width', opt.scale.width)
+			 .attr('stroke', opt.scale.verticalColor)
+			 .attr('stroke-opacity', opt.scale.opacity);
+			
+			g.append('text')
+			 .attr('x', mainX2 + opt.scale.titleGap)
+			 .attr('y', mainY + opt.scale.fontSize/2)
+			 .attr('fill', opt.scale.titleColor)
+			 .attr('font-size', opt.scale.fontSize+'px')
+			 .text(opt.scale.title);
+		
+		var basicValue = (mainX2 - opt.bar.left) / opt.scale.count;
+		var hy1 = mainY - (opt.scale.Height / 2);
+		var hy2 = mainY + (opt.scale.Height / 2);
+		
+		var oneScale = (opt.maxValue - opt.minValue) / opt.scale.count;
+		for(var i=0, end=opt.scale.count+1 ; i < end ; i++){
+			var hx = basicValue * i + opt.bar.left; 
+			//垂直刻度
+			g.append('line')
+			 .attr('x1', hx)
+			 .attr('y1', hy1)
+			 .attr('x2', hx)
+			 .attr('y2', hy2)
+			 .attr('stroke-width', opt.scale.width)
+			 .attr('stroke', opt.scale.verticalColor)
+			 .attr('stroke-opacity', opt.scale.opacity);
+			//文字
+			g.append('text')
+			 .attr('x', hx)
+			 .attr('y', hy2 + opt.scale.valueGap)
+			 .text(oneScale * i);
+		}
+		return g;
 	},
 	randerMarkText : function(svg, g, x, y, text, fontSize, color){
 		g.append('text')
@@ -257,7 +311,7 @@ var LineChart = {
 					.attr('stop-opacity', d[i].opacity);
 		}
 	},
-	renderRadar : function(svg, opt, self){
+	renderLineBar : function(svg, opt, self){
 		var parameter = {};
 		var viewBoxList = opt.viewBox.split(',');
 		parameter.w = viewBoxList[2];
@@ -277,6 +331,7 @@ var LineChart = {
 		svg.call(self.randerMainSourceText, g, parameter, opt, self);
 		svg.call(self.randerTopMark, g, parameter, opt, self);
 		svg.call(self.randerBottomMark, g, parameter, opt, self);
+		svg.call(self.randerScale, parameter, opt, self);
 	},
 	draw : function(id, data, options){
 		var opt = (options) ? this.mixOptions(options) : this.mixOptions(null) ;
@@ -287,7 +342,7 @@ var LineChart = {
       		svg.attr("viewBox",opt.viewBox);
       		svg.attr("preserveAspectRatio", opt.preserveAspectRatio);
       		svg.datum(data);
-      		svg.call(this.renderRadar, opt, this);	//要呼叫的函數
+      		svg.call(this.renderLineBar, opt, this);	//要呼叫的函數
 	}
 };
 
